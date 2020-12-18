@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  sqlserver_tul_dbs_2020:
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_DATA_DIR: /var/opt/sqlserver/data
+      MSSQL_LOG_DIR: /var/opt/sqlserver/log
+      MSSQL_BACKUP_DIR: /var/opt/sqlserver/backup
+      SA_PASSWORD: "UPPERCASE_lowercase_10"
+    build:
+      context: ./sqlserver
+      dockerfile: Dockerfile
+    ports:
+      - "15789:1433"
+    volumes:
+      - sqlsystem:/var/opt/mssql/
+      - sqldata:/var/opt/sqlserver/data
+      - sqllog:/var/opt/sqlserver/log
+      - sqlbackup:/var/opt/sqlserver/backup
+volumes:
+  sqlsystem:
+  sqldata:
+  sqllog:
+  sqlbackup:
