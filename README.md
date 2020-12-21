@@ -1,5 +1,9 @@
 # Term paper DBS 2020
 
+## Requirements
+- [docker](https://www.docker.com/get-started)
+- [sqlcmd](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15)
+
 ## Setup
 
 1. Open new terminal window
