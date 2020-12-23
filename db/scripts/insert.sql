@@ -1,5 +1,5 @@
 -- todo replace with actual insert script
 
-insert into users (name, email)
-values ('hello', 'foo@bar.com')
+insert into users (id,name, email)
+values (1,'hello', 'foo@bar.com')
     go
