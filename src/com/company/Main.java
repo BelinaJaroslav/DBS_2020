@@ -25,6 +25,6 @@ public class Main {
                 String email = rs.getString("email");
                 System.out.format("%d %-10s %-10s",id, name, email);
             }
-        } //close connection not needed as try with resources is used
+        }
     }
 }
