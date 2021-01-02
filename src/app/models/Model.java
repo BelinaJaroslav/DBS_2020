@@ -2,7 +2,6 @@ package app.models;
 
 import app.relations.BasicRelation;
 import db.ConnectionManager;
-import sun.lwawt.macosx.CSystemTray;
 
 import java.sql.*;
 import java.util.List;
@@ -11,11 +10,9 @@ public abstract class Model {
    public BasicRelation selectAll() throws SQLException {
       BasicRelation relation = getBasicRelation();
 
-      try (
-            Connection connection = ConnectionManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM %s", modelName()))
-      ) {
-         ResultSet resultSet = preparedStatement.executeQuery();
+      try (Connection connection = ConnectionManager.getConnection()) {
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM %s", modelName()));
 
          while (resultSet.next()) {
             relation.addLine(resultSetToList(resultSet));
