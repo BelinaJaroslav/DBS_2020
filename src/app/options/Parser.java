@@ -7,14 +7,15 @@ import java.util.Arrays;
 public class Parser {
    public static RelationInterface parseLine(String line) {
       String[] args = line.split(" +");
-      if (args[0].isEmpty()) {
-         return new Noop().execute();
+      if (args.length == 0 || args[0].isEmpty()) {
+         return null;
       }
       String rawOptionName = args[0];
+      String name = optionNameFromArg(args[0]);
       args = Arrays.copyOfRange(args, 1, args.length);
 
       try {
-         Class optionClass = Class.forName(optionNameFromArg(args[0]));
+         Class optionClass = Class.forName(name);
          Option option = (Option) optionClass.newInstance();
 
          return option.execute(args);
