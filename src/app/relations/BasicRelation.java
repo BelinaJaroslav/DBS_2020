@@ -23,18 +23,17 @@ public class BasicRelation implements Formattable {
    public String format() {
       StringBuilder builder = new StringBuilder();
 
+      if (this.lines.isEmpty()) {
+         builder.append((new EmptyRelation()).format());
+
+         return builder.toString();
+      }
+
       builder.append(String.format("%5s  |", ""));
       for (String columnName : this.columnNames) {
          builder.append(String.format(formatUnit, columnName));
       }
       builder.append('\n');
-
-      if (this.lines.isEmpty()) {
-         builder.append((new EmptyRelation()).format());
-         builder.append('\n');
-
-         return builder.toString();
-      }
 
       int lineNumber = 1;
       for (List<String> line : this.lines) {

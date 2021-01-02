@@ -22,7 +22,7 @@ public class Parser {
 
          return option.execute(args);
       } catch (IllegalOptionArgumentException e) {
-         throw new RuntimeException("Arguments for option `" + rawOptionName + "` are invalid. Try <help>");
+         throw new RuntimeException("Arguments for option `" + rawOptionName + "` are invalid: " + e.getMessage() + "\nTry <help>");
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
          throw new RuntimeException("Option `" + rawOptionName + "` is invalid. Try <help>");
       } catch (IllegalArgumentException e) {
