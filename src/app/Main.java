@@ -1,4 +1,4 @@
-package com.company;
+package app;
 
 import config.Config;
 
