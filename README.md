@@ -3,6 +3,14 @@
 ## Requirements
 - [docker](https://www.docker.com/get-started)
 - [sqlcmd](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15)
+- JDBC Driver
+
+## JDBC Driver installation in IntelliJ Idea
+
+1. [Download the library](https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15)
+2. Unpack the `zip` or `tar.gz` file
+3. Move `mssql-jdbc-8.4.1.jre8.jar` to current project into `lib/` directory
+4. In IntelliJ, go to `File` > `Project Structure` > `Modules` > `Dependencies` > `+` > `JAR or Directories` > Select `lib/mssql-jdbc-8.4.1.jre8.jar`
 
 ## Setup
 
