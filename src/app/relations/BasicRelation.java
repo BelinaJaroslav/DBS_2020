@@ -10,17 +10,8 @@ public class BasicRelation implements Formattable {
    private List<List<String>> lines;
    private String[] columnNames;
 
-   public BasicRelation(String[] columnNames) {
+   public BasicRelation(String... columnNames) {
       this.lines = new LinkedList<>();
-      this.columnNames = columnNames;
-   }
-
-   public BasicRelation(String[] columnNames, List<List<String>> lines) throws IllegalArgumentException {
-      if (lines == null) {
-         throw new IllegalArgumentException("null given");
-      }
-
-      this.lines = lines;
       this.columnNames = columnNames;
    }
 
@@ -32,15 +23,22 @@ public class BasicRelation implements Formattable {
    public String format() {
       StringBuilder builder = new StringBuilder();
 
-      builder.append(String.format("%-5s |", ""));
+      builder.append(String.format("%5s  |", ""));
       for (String columnName : this.columnNames) {
          builder.append(String.format(formatUnit, columnName));
       }
       builder.append('\n');
 
+      if (this.lines.isEmpty()) {
+         builder.append((new EmptyRelation()).format());
+         builder.append('\n');
+
+         return builder.toString();
+      }
+
       int lineNumber = 1;
       for (List<String> line : this.lines) {
-         builder.append(String.format("%-5s. |", Integer.toString(lineNumber)));
+         builder.append(String.format("%5s. |", Integer.toString(lineNumber)));
          for (String item : line) {
             builder.append(String.format(formatUnit, item));
          }
