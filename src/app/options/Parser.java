@@ -1,11 +1,11 @@
 package app.options;
 
-import app.relations.RelationInterface;
+import app.formatters.Formattable;
 
 import java.util.Arrays;
 
 public class Parser {
-   public static RelationInterface parseLine(String line) {
+   public static Formattable parseLine(String line) {
       String[] args = line.split(" +");
       if (args.length == 0 || args[0].isEmpty()) {
          return null;

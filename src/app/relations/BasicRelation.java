@@ -1,9 +1,11 @@
 package app.relations;
 
+import app.formatters.Formattable;
+
 import java.util.LinkedList;
 import java.util.List;
 
-public class BasicRelation implements RelationInterface {
+public class BasicRelation implements Formattable {
    private static final String formatUnit = "%-20s |";
    private List<List<String>> lines;
    private String[] columnNames;

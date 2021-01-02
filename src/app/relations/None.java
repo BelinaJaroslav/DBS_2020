@@ -1,6 +1,8 @@
 package app.relations;
 
-public class None implements RelationInterface {
+import app.formatters.Formattable;
+
+public class None implements Formattable {
    @Override
    public String format() {
       return "";
