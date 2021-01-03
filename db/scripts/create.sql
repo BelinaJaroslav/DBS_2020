@@ -24,9 +24,9 @@ CREATE TABLE hospitals
 -- Table: hospitals_doctors
 CREATE TABLE hospitals_doctors
 (
-    id           int NOT NULL IDENTITY,
-    hospitals_id int NOT NULL,
-    doctors_id   int NOT NULL,
+    id          int NOT NULL IDENTITY,
+    hospital_id int NOT NULL,
+    doctor_id   int NOT NULL,
     CONSTRAINT hospitals_doctors_pk PRIMARY KEY (id)
 )
 
@@ -44,12 +44,12 @@ CREATE TABLE patients
 -- Table: registered_vaccinations
 CREATE TABLE registered_vaccinations
 (
-    id          int      NOT NULL IDENTITY (1000,1),
-    patients_id int      NOT NULL,
-    vaccines_id int      NOT NULL,
-    doctors_id  int      NOT NULL,
-    completed   bit      NOT NULL,
-    time        datetime NOT NULL,
+    id         int      NOT NULL IDENTITY (1000,1),
+    patient_id int      NOT NULL,
+    vaccine_id int      NOT NULL,
+    doctor_id  int      NOT NULL,
+    completed  bit      NOT NULL,
+    time       datetime NOT NULL,
     CONSTRAINT registered_vaccinations_pk PRIMARY KEY (id)
 )
 
@@ -67,33 +67,33 @@ CREATE TABLE vaccines
 -- Reference: hospitals_doctors_doctors (table: hospitals_doctors)
 ALTER TABLE hospitals_doctors
     ADD CONSTRAINT hospitals_doctors_doctors
-        FOREIGN KEY (doctors_id)
+        FOREIGN KEY (doctor_id)
             REFERENCES doctors (id)
             ON DELETE CASCADE
 
 -- Reference: hospitals_doctors_hospitals (table: hospitals_doctors)
 ALTER TABLE hospitals_doctors
     ADD CONSTRAINT hospitals_doctors_hospitals
-        FOREIGN KEY (hospitals_id)
+        FOREIGN KEY (hospital_id)
             REFERENCES hospitals (id)
 
 -- Reference: registered_vaccination_doctors (table: registered_vaccinations)
 ALTER TABLE registered_vaccinations
     ADD CONSTRAINT registered_vaccination_doctors
-        FOREIGN KEY (doctors_id)
+        FOREIGN KEY (doctor_id)
             REFERENCES doctors (id)
 
 -- Reference: registered_vaccination_patients (table: registered_vaccinations)
 ALTER TABLE registered_vaccinations
     ADD CONSTRAINT registered_vaccination_patients
-        FOREIGN KEY (patients_id)
+        FOREIGN KEY (patient_id)
             REFERENCES patients (id)
             ON DELETE CASCADE
 
 -- Reference: registered_vaccination_vaccines (table: registered_vaccinations)
 ALTER TABLE registered_vaccinations
     ADD CONSTRAINT registered_vaccination_vaccines
-        FOREIGN KEY (vaccines_id)
+        FOREIGN KEY (vaccine_id)
             REFERENCES vaccines (id)
 
 -- End of file.
