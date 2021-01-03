@@ -23,12 +23,20 @@
 5. Run insert script
    > sqlcmd -S 127.0.0.1,15789 -U sa -P UPPERCASE_lowercase_10 -i db/scripts/insert.sql
 
+## Cleaning database structure and data
+1. Open docker app
+2. Go to `Containers / Apps` > delete container `docker_sqlserver_tul_dbs_2020`
+4. Go to `Images` > delete image `docker_sqlserver_tul_dbs_2020`
+5. Open terminal window
+6. Delete volumes with stored data
+   > docker volume rm $(docker volume ls -q | grep docker_sql) $(docker volume ls -q | grep sqlserver)
+
 ## Contribution
 
 1. Pick one of the issues assigned to you.
 1a. `git pull rebase`
 2. Create a new branch on current master with name `<issue-number>-<short-issue-description>`.
-> e.g. `git checkout -b 1-add-readme`
+   > e.g. `git checkout -b 1-add-readme`
 3. Commit changes into the branch.
 4. Push commits to github.
 5. Create pull request with `<your-branch-name>` as a source and `master` as a target. Add link of the related issue into the comment of the pull request.
