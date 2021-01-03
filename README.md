@@ -26,6 +26,7 @@
 ## Contribution
 
 1. Pick one of the issues assigned to you.
+1a. `git pull rebase`
 2. Create a new branch on current master with name `<issue-number>-<short-issue-description>`.
 > e.g. `git checkout -b 1-add-readme`
 3. Commit changes into the branch.
