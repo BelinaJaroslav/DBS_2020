@@ -13,6 +13,8 @@ public class Parser {
             return new Doctor();
          case Hospital.name:
             return new Hospital();
+         case HospitalsDoctor.name:
+            return new HospitalsDoctor();
       }
 
       throw new IllegalOptionArgumentException("Model `" + tableName + "` is not defined");
