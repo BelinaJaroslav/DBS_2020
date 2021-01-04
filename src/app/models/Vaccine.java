@@ -14,6 +14,7 @@ public class Vaccine extends Model {
    protected List<String> resultSetToList(ResultSet resultSet) throws SQLException {
       LinkedList<String> line = new LinkedList<>();
       int id = resultSet.getInt("id");
+      int price = resultSet.getInt("price");
 
       line.add(Integer.toString(id));
       line.add(resultSet.getString("name"));
@@ -29,6 +30,6 @@ public class Vaccine extends Model {
 
    @Override
    protected BasicRelation getBasicRelation() {
-      return new BasicRelation("vaccine_id", "vaccine_name", "vaccine_manufacturer");
+      return new BasicRelation("vaccine_id", "vaccine_name", "vaccine_manufacturer", "vaccine_price");
    }
 }

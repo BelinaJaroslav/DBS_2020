@@ -17,7 +17,7 @@ public class Hospital extends Model {
 
       line.add(Integer.toString(id));
       line.add(resultSet.getString("name"));
-      line.add(resultSet.getString("address"));
+      line.add(resultSet.getString("city"));
 
       return line;
    }
@@ -29,6 +29,6 @@ public class Hospital extends Model {
 
    @Override
    public BasicRelation getBasicRelation() {
-      return new BasicRelation("hospital_id", "hospital_name", "hospital_address");
+      return new BasicRelation("hospital_id", "hospital_name", "hospital_city");
    }
 }
