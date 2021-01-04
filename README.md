@@ -8,37 +8,38 @@
 ## JDBC Driver installation in IntelliJ Idea
 
 1. [Download the library](https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15)
-2. Unpack the `zip` or `tar.gz` file
-3. Move `mssql-jdbc-8.4.1.jre8.jar` to current project into `lib/` directory
-4. In IntelliJ, go to `File` > `Project Structure` > `Modules` > `Dependencies` > `+` > `JAR or Directories` > Select `lib/mssql-jdbc-8.4.1.jre8.jar`
+0. Unpack the `zip` or `tar.gz` file
+0. Move `mssql-jdbc-8.4.1.jre8.jar` to current project into `lib/` directory
+0. In IntelliJ, go to `File` > `Project Structure` > `Modules` > `Dependencies` > `+` > `JAR or Directories` > Select `lib/mssql-jdbc-8.4.1.jre8.jar`
 
 ## Setup
 
 1. Open new terminal window
-2. Run database
+0. Run database
    > cd docker && docker-compose up
-3. Open new terminal window
-4. Run create script
+0. Open new terminal window
+0. Run create script
    > sqlcmd -S 127.0.0.1,15789 -U sa -P UPPERCASE_lowercase_10 -i db/scripts/create.sql
-5. Run insert script
+0. Run insert script
    > sqlcmd -S 127.0.0.1,15789 -U sa -P UPPERCASE_lowercase_10 -i db/scripts/insert.sql
 
 ## Cleaning database structure and data
 1. Open docker app
-2. Go to `Containers / Apps` > delete container `docker_sqlserver_tul_dbs_2020`
-4. Go to `Images` > delete image `docker_sqlserver_tul_dbs_2020`
-5. Open terminal window
-6. Delete volumes with stored data
+0. Go to `Containers / Apps` > delete container `docker_sqlserver_tul_dbs_2020`
+0. Go to `Images` > delete image `docker_sqlserver_tul_dbs_2020`
+0. Open terminal window
+0. Delete volumes with stored data
    > docker volume rm $(docker volume ls -q | grep docker_sql) $(docker volume ls -q | grep sqlserver)
 
 ## Contribution
 
 1. Pick one of the issues assigned to you.
-1a. `git pull rebase`
-2. Create a new branch on current master with name `<issue-number>-<short-issue-description>`.
+0. Checkout master and pull current version
+   > git checkout master && git pull --rebase
+0. Create a new branch with name `<issue-number>-<short-issue-description>`.
    > e.g. `git checkout -b 1-add-readme`
-3. Commit changes into the branch.
-4. Push commits to github.
-5. Create pull request with `<your-branch-name>` as a source and `master` as a target. Add link of the related issue into the comment of the pull request.
-6. Assign the PR to yourself and set someone else as a reviewer.
-7. Merge PR after reviewer accepts your changes.
+0. Commit changes into the branch.
+0. Push commits to github.
+0. Create pull request with `<your-branch-name>` as a source and `master` as a target. Add link of the related issue into the comment of the pull request.
+0. Assign the PR to yourself and set someone else as a reviewer.
+0. Merge PR after reviewer accepts your changes.
