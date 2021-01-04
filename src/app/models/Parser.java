@@ -15,6 +15,8 @@ public class Parser {
             return new Hospital();
          case HospitalsDoctor.name:
             return new HospitalsDoctor();
+         case RegisteredVaccination.name:
+            return new RegisteredVaccination();
       }
 
       throw new IllegalOptionArgumentException("Model `" + tableName + "` is not defined");
