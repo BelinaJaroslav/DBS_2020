@@ -18,6 +18,7 @@ public class Vaccine extends Model {
       line.add(Integer.toString(id));
       line.add(resultSet.getString("name"));
       line.add(resultSet.getString("manufacturer"));
+      line.add(Integer.toString(price));
 
       return line;
    }
