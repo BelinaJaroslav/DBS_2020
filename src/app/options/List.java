@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class List extends Option {
    @Override
-   public Formattable execute(String[] args) throws ClassNotFoundException, SQLException {
+   public Formattable execute(String[] args) throws SQLException {
       Integer id = parseId(args);
       String tableName = parseTableName(args);
       Model model = Parser.fromTableName(tableName);

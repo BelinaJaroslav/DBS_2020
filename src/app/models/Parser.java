@@ -3,7 +3,7 @@ package app.models;
 import app.exceptions.IllegalOptionArgumentException;
 
 public class Parser {
-   public static Model fromTableName(String tableName) throws ClassNotFoundException {
+   public static Model fromTableName(String tableName) throws IllegalOptionArgumentException {
       switch (tableName) {
          case Patient.name:
             return new Patient();

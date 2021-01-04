@@ -1,7 +1,6 @@
 package app.models;
 
 import app.relations.BasicRelation;
-import db.ConnectionManager;
 
 import java.sql.*;
 import java.util.LinkedList;
