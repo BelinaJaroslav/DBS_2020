@@ -162,7 +162,7 @@ BEGIN TRY
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
     VALUES (2, 109)
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
-    VALUES (3, 114)
+    VALUES (3, 113)
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
     VALUES (3, 112)
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
@@ -182,11 +182,11 @@ BEGIN TRY
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
     VALUES (8, 113)
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
-    VALUES (8, 114)
+    VALUES (8, 113)
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
     VALUES (9, 106)
     INSERT INTO hospitals_doctors (hospital_id, doctor_id)
-    VALUES (10, 114)
+    VALUES (10, 113)
 
     INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
     VALUES (1, 10, 100, 1, '2021-02-01 10:50:00')
@@ -240,9 +240,11 @@ BEGIN TRY
     VALUES (20, 10, 100, 1, '2021-11-26 13:00:00')
 
     COMMIT TRANSACTION T_INSERT
+    PRINT N'Insertion succeeded'
 END TRY
 BEGIN CATCH
     ROLLBACK TRANSACTION T_INSERT
+    PRINT N'Insertion failed'
 END CATCH
 
 -- End of file.
