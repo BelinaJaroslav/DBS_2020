@@ -29,7 +29,7 @@
 0. Go to `Images` > delete image `docker_sqlserver_tul_dbs_2020`
 0. Open terminal window
 0. Delete volumes with stored data
-   > docker volume rm $(docker volume ls -q | grep docker_sql) $(docker volume ls -q | grep sqlserver)
+   > docker volume rm $(docker volume ls -q | grep docker_sql)
 
 ## Contribution
 
