@@ -34,7 +34,7 @@ public class HospitalsDoctor extends Model {
       return new BasicRelation(
             "hospitals_doctor_id",
             "hospitals_doctor_hospital_id",
-            "hospitals_doctors_doctor_id"
+            "hospitals_doctor_doctor_id"
       );
    }
 }
