@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BasicRelation implements Formattable {
-   private static final String formatUnit = "%-20s |";
    private List<List<String>> lines;
    private String[] columnNames;
 
@@ -21,6 +20,7 @@ public class BasicRelation implements Formattable {
 
    @Override
    public String format() {
+      String formatUnit = formatUnit();
       StringBuilder builder = new StringBuilder();
 
       if (this.lines.isEmpty()) {
@@ -46,5 +46,31 @@ public class BasicRelation implements Formattable {
       }
 
       return builder.toString();
+   }
+
+   private String formatUnit() {
+      Integer size = sizeOfLargestRecord() + 3;
+
+      return "%-" + size.toString() + "s|";
+   }
+
+   private Integer sizeOfLargestRecord() {
+      Integer max = 0;
+
+      for (String columnName : this.columnNames) {
+         if (max < columnName.length()) {
+            max = columnName.length();
+         }
+      }
+
+      for (List<String> line : this.lines) {
+         for (String item : line) {
+            if (max < item.length()) {
+               max = item.length();
+            }
+         }
+      }
+
+      return max;
    }
 }
