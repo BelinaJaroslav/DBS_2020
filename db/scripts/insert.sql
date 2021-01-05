@@ -1,177 +1,248 @@
--- todo replace with actual insert script
+BEGIN TRANSACTION T_INSERT
+BEGIN TRY
+    SET IDENTITY_INSERT doctors ON
 
-begin tran T1;
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (100, 'Jan', 'Novák', '65000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (101, 'Josef', 'Frýdek', '62350')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (102, 'Bořivoj', 'Čech', '82000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (103, 'Vojtěch', 'Přibyl', '56000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (104, 'Simon', 'Hunyad', '67500')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (105, 'Jiří', 'Starý', '52000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (106, 'Robert', 'Chlup', '45000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (107, 'Adéla', 'Krönhofer', '56000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (108, 'Anna', 'Potáhalová', '64500')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (109, 'Petr', 'Šmíd', '71200')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (110, 'Pavel', 'Pěšinka', '39500')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (111, 'Dominika', 'Fullerová', '48000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (112, 'Bernard', 'Kreis', '62000')
+    INSERT INTO doctors (id, name, surname, salary)
+    VALUES (113, 'Nikola', 'Greisů', '80000')
 
-insert into doctors (name, surname, salary) values ('Jan', 'Novák', '65000');
-insert into doctors (name, surname, salary) values ('Josef', 'Frýdek', '62350');
-insert into doctors (name, surname, salary) values ('Bořivoj', 'Čech', '82000');
-insert into doctors (name, surname, salary) values ('Vojtěch', 'Přibyl', '56000');
-insert into doctors (name, surname, salary) values ('Simon', 'Hunyad', '67500');
-insert into doctors (name, surname, salary) values ('Jiří', 'Starý', '52000');
-insert into doctors (name, surname, salary) values ('Robert', 'Chlup', '45000');
-insert into doctors (name, surname, salary) values ('Adéla', 'Krönhofer', '56000');
-insert into doctors (name, surname, salary) values ('Anna', 'Potáhalová', '64500');
-insert into doctors (name, surname, salary) values ('Petr', 'Šmíd', '71200');
-insert into doctors (name, surname, salary) values ('Pavel', 'Pěšinka', '39500');
-insert into doctors (name, surname, salary) values ('Dominika', 'Fullerová', '48000');
-insert into doctors (name, surname, salary) values ('Bernard', 'Kreis', '62000');
-insert into doctors (name, surname, salary) values ('Nikola', 'Greisů', '80000');
+    SET IDENTITY_INSERT doctors OFF
 
-insert into vaccines (name, manufacturer, price) values ('AstraZaneca COVID-19 vaccine', 'AstraZaneca', 970);
-insert into vaccines (name, manufacturer, price) values ('Janssen’s COVID-19 vaccine', 'Janssen', 399);
-insert into vaccines (name, manufacturer, price) values ('Novavax’s COVID-19 vaccine', 'Novavax', 353);
-insert into vaccines (name, manufacturer, price) values ('Moderna’s COVID-19 vaccine', 'Moderna', 488);
-insert into vaccines (name, manufacturer, price) values ('Pfizer-BioNTech COVID-19 vaccine', 'Moderna-BioNtech', 828);
-insert into vaccines (name, manufacturer, price) values ('Sputnik V', 'Gamaleya Research Institute', 746);
-insert into vaccines (name, manufacturer, price) values ('BBIBP-CorV', 'Beijing Institute of Biological Products', 975);
-insert into vaccines (name, manufacturer, price) values ('CoronaVac', 'Sinovac', 772);
-insert into vaccines (name, manufacturer, price) values ('EpiVacCorona', 'FBRISRC of Virology and Biotechnology', 759);
-insert into vaccines (name, manufacturer, price) values ('RandoCoVac', 'African bureau of Biotechnology', 486);
 
-insert into patients (name, surname, birth_number) values ('David', 'Kolka', '8406091749');
-insert into patients (name, surname, birth_number) values ('Kamila', 'Kusínová', '7751023555');
-insert into patients (name, surname, birth_number) values ('Albert', 'Plný', '6402280170');
-insert into patients (name, surname, birth_number) values ('Kateřina', 'Murná', '456016383');
-insert into patients (name, surname, birth_number) values ('Kateřina', 'Zídková', '8853286277');
-insert into patients (name, surname, birth_number) values ('Joela', 'Newman', '8055129082');
-insert into patients (name, surname, birth_number) values ('Andrea', 'Kuncová', '7958036383');
-insert into patients (name, surname, birth_number) values ('Boris', 'Angyal', '8305258038');
-insert into patients (name, surname, birth_number) values ('Karel', 'Hanykýř', '7411073780');
-insert into patients (name, surname, birth_number) values ('Irena', 'Šmidílková', '446125780');
-insert into patients (name, surname, birth_number) values ('Krystýna', 'Angyal', '6653182602');
-insert into patients (name, surname, birth_number) values ('Iva', 'Malá', '9755273869');
-insert into patients (name, surname, birth_number) values ('Melánie', 'Koulouchová', '6653171899');
-insert into patients (name, surname, birth_number) values ('Issa', 'Mussoli', '0212073780');
-insert into patients (name, surname, birth_number) values ('Jan', 'Kolář', '8505076096');
-insert into patients (name, surname, birth_number) values ('Lenka', 'Nováková', '8155195686');
-insert into patients (name, surname, birth_number) values ('Michal', 'Pavouk', '7807229353');
-insert into patients (name, surname, birth_number) values ('Hubert', 'Bednář', '8606119709');
-insert into patients (name, surname, birth_number) values ('Daniela', 'Stehlíková', '8558139931');
-insert into patients (name, surname, birth_number) values ('Martin', 'Koller', '7804139915');
-insert into patients (name, surname, birth_number) values ('Gerhart', 'Berger', '450204938');
-insert into patients (name, surname, birth_number) values ('Lucie', 'Ester', '9457104360');
-insert into patients (name, surname, birth_number) values ('Štefan', 'Koloc', '5905190742');
-insert into patients (name, surname, birth_number) values ('David', 'Miner', '6502159774');
-insert into patients (name, surname, birth_number) values ('František', 'Doležal', '0411091296');
+    SET IDENTITY_INSERT vaccines ON
 
-insert into hospitals (name, city) values ('Nemocnice Rudolfa a Stefanie Benešov', 'Benešov');
-insert into hospitals (name, city) values ('Oblastní nemocnice Kladno, a.s.', 'Kladno');
-insert into hospitals (name, city) values ('Oblastní nemocnice Kolín - nemocnice Středočeského kraje, a.s.', 'Kolín 3');
-insert into hospitals (name, city) values ('Nemocnice Prachatice, a.s.', 'Prachatice 2');
-insert into hospitals (name, city) values ('Fakultní nemocnice u sv. Anny v Brně ', 'Brno');
-insert into hospitals (name, city) values ('Vojenská nemocnice Brno ', 'Brno-Zábrdovice');
-insert into hospitals (name, city) values ('Nemocnice Valtice, s.r.o.', 'Valtice');
-insert into hospitals (name, city) values ('Karlovarská krajská nemocnice, a.s. ', 'Karlovy Vary');
-insert into hospitals (name, city) values ('Fakultní nemocnice Hradec Králové ', 'Hradec Králové');
-insert into hospitals (name, city) values ('Nemocnice Náchod ', 'Náchod');
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (10, 'AstraZaneca COVID-19 vaccine', 'AstraZaneca', 970)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (12, 'Janssen’s COVID-19 vaccine', 'Janssen', 399)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (14, 'Novavax’s COVID-19 vaccine', 'Novavax', 353)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (16, 'Moderna’s COVID-19 vaccine', 'Moderna', 488)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (18, 'Pfizer-BioNTech COVID-19 vaccine', 'Moderna-BioNtech', 828)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (20, 'Sputnik V', 'Gamaleya Research Institute', 746)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (22, 'BBIBP-CorV', 'Beijing Institute of Biological Products', 975)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (24, 'CoronaVac', 'Sinovac', 772)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (26, 'EpiVacCorona', 'FBRISRC of Virology and Biotechnology', 759)
+    INSERT INTO vaccines (id, name, manufacturer, price)
+    VALUES (28, 'RandoCoVac', 'African bureau of Biotechnology', 486)
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('1', '100');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('1', '101');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('1', '102');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('1', '103');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('1', '104');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('1', '105');
+    SET IDENTITY_INSERT vaccines OFF
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('2', '100');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('2', '104');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('2', '108');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('2', '109');
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('3', '114');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('3', '112');
+    SET IDENTITY_INSERT patients ON
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('4', '106');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('4', '107');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('4', '112');
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (1, 'David', 'Kolka', '8406091749')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (2, 'Kamila', 'Kusínová', '7751023555')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (3, 'Albert', 'Plný', '6402280170')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (4, 'Kateřina', 'Murná', '456016383')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (5, 'Kateřina', 'Zídková', '8853286277')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (6, 'Joela', 'Newman', '8055129082')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (7, 'Andrea', 'Kuncová', '7958036383')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (8, 'Boris', 'Angyal', '8305258038')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (9, 'Karel', 'Hanykýř', '7411073780')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (10, 'Irena', 'Šmidílková', '446125780')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (11, 'Krystýna', 'Angyal', '6653182602')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (12, 'Iva', 'Malá', '9755273869')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (13, 'Melánie', 'Koulouchová', '6653171899')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (14, 'Issa', 'Mussoli', '0212073780')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (15, 'Jan', 'Kolář', '8505076096')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (16, 'Lenka', 'Nováková', '8155195686')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (17, 'Michal', 'Pavouk', '7807229353')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (18, 'Hubert', 'Bednář', '8606119709')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (19, 'Daniela', 'Stehlíková', '8558139931')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (20, 'Martin', 'Koller', '7804139915')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (21, 'Gerhart', 'Berger', '450204938')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (22, 'Lucie', 'Ester', '9457104360')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (23, 'Štefan', 'Koloc', '5905190742')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (24, 'David', 'Miner', '6502159774')
+    INSERT INTO patients (id, name, surname, birth_number)
+    VALUES (25, 'František', 'Doležal', '0411091296')
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('5', '109');
+    SET IDENTITY_INSERT patients OFF
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('6', '110');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('6', '111');
+    SET IDENTITY_INSERT hospitals ON
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('7', '111');
+    INSERT INTO hospitals (id, name, city)
+    VALUES (1, 'Nemocnice Rudolfa a Stefanie Benešov', 'Benešov')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (2, 'Oblastní nemocnice Kladno, a.s.', 'Kladno')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (3, 'Oblastní nemocnice Kolín - nemocnice Středočeského kraje, a.s.', 'Kolín 3')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (4, 'Nemocnice Prachatice, a.s.', 'Prachatice 2')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (5, 'Fakultní nemocnice u sv. Anny v Brně ', 'Brno')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (6, 'Vojenská nemocnice Brno ', 'Brno-Zábrdovice')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (7, 'Nemocnice Valtice, s.r.o.', 'Valtice')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (8, 'Karlovarská krajská nemocnice, a.s. ', 'Karlovy Vary')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (9, 'Fakultní nemocnice Hradec Králové ', 'Hradec Králové')
+    INSERT INTO hospitals (id, name, city)
+    VALUES (10, 'Nemocnice Náchod ', 'Náchod')
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('8', '113');
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('8', '114');
+    SET IDENTITY_INSERT hospitals OFF
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('9', '106');
 
-insert into hospitals_doctos (hospital_id, doctor_id)
-values ('10', '114');
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (1, 100)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (1, 101)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (1, 102)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (1, 103)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (1, 104)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (1, 105)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (2, 100)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (2, 104)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (2, 108)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (2, 109)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (3, 114)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (3, 112)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (4, 106)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (4, 107)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (4, 112)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (5, 109)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (6, 110)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (6, 111)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (7, 111)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (8, 113)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (8, 114)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (9, 106)
+    INSERT INTO hospitals_doctors (hospital_id, doctor_id)
+    VALUES (10, 114)
 
-insert into registered_vaccinations (patient_id,vaccine_id,doctor_id, completed, time)
-values ('1', '10','100', '1',  '2021-02-01 10:50:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('2', '10', '100', '1', '2021-02-01 10:55:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('3', '10', '112', '1', '2021-02-02 11:30:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('4', '12', '111', '1', '2021-02-05 12:50:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('5', '10', '108', '1', '2021-02-10 15:00:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('6', '10', '100', '1', '2021-02-12 10:15:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('7', '10', '100', '1', '2021-02-13 10:25:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('8', '10', '100', '1', '2021-02-14 12:20:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('9', '10', '100', '1', '2021-02-20 12:50:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('10', '10', '100', '1', '2021-02-28 8:00:00');
-insert into registered_vaccinations (patient_id,vaccine_id,doctor_id, completed, time)
-values ('11', '10','100', '1',  '2021-03-01 8:25:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('12', '10', '100', '1', '2021-03-01 8:30:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('13', '10', '100', '1', '2021-03-01 10:00:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('14', '10', '100', '1', '2021-03-02 8:50:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('15', '10', '100', '1', '2021-03-20 12:00:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('16', '10', '100', '1', '2021-02-28 8:00:00');
-insert into registered_vaccinations (patient_id,vaccine_id,doctor_id, completed, time)
-values ('17', '10','100', '1',  '2021-04-05 8:25:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('18', '10', '100', '1', '2021-04-05 8:30:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('19', '10', '100', '1', '2021-04-25 10:15:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('20', '10', '100', '1', '2021-10-02 8:00:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('21', '10', '100', '1', '2021-10-03 8:50:00');
-insert into registered_vaccinations (patient_id,vaccine_id,doctor_id, completed, time)
-values ('17', '10','100', '1',  '2021-010-05 12:25:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('18', '10', '100', '1', '2021-11-06 10:30:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('19', '10', '100', '1', '2021-11-25 10:15:00');
-insert into registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
-values ('20', '10', '100', '1', '2021-11-26 13:00:00');
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (1, 10, 100, 1, '2021-02-01 10:50:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (2, 10, 100, 1, '2021-02-01 10:55:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (3, 10, 112, 1, '2021-02-02 11:30:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (4, 12, 111, 1, '2021-02-05 12:50:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (5, 10, 108, 1, '2021-02-10 15:00:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (6, 10, 100, 1, '2021-02-12 10:15:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (7, 10, 100, 1, '2021-02-13 10:25:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (8, 10, 100, 1, '2021-02-14 12:20:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (9, 10, 100, 1, '2021-02-20 12:50:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (10, 10, 100, 1, '2021-02-28 8:00:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (11, 10, 100, 1, '2021-03-01 8:25:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (12, 10, 100, 1, '2021-03-01 8:30:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (13, 10, 100, 1, '2021-03-01 10:00:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (14, 10, 100, 1, '2021-03-02 8:50:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (15, 10, 100, 1, '2021-03-20 12:00:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (16, 10, 100, 1, '2021-02-28 8:00:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (17, 10, 100, 1, '2021-04-05 8:25:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (18, 10, 100, 1, '2021-04-05 8:30:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (19, 10, 100, 1, '2021-04-25 10:15:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (20, 10, 100, 1, '2021-10-02 8:00:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (21, 10, 100, 1, '2021-10-03 8:50:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (17, 10, 100, 1, '2021-010-05 12:25:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (18, 10, 100, 1, '2021-11-06 10:30:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (19, 10, 100, 1, '2021-11-25 10:15:00')
+    INSERT INTO registered_vaccinations (patient_id, vaccine_id, doctor_id, completed, time)
+    VALUES (20, 10, 100, 1, '2021-11-26 13:00:00')
 
-go
+    COMMIT TRANSACTION T_INSERT
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION T_INSERT
+END CATCH
 
-commit tran T1;
+-- End of file.
