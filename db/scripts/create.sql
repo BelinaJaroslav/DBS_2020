@@ -5,9 +5,9 @@
 -- Table: doctors
 CREATE TABLE doctors
 (
-    id      int      NOT NULL IDENTITY (1,100),
-    name    nvarchar NOT NULL,
-    surname nvarchar NOT NULL,
+    id      int      NOT NULL IDENTITY (100,1),
+    name    nvarchar(50) NOT NULL,
+    surname nvarchar(50) NOT NULL,
     salary  int      NULL,
     CONSTRAINT doctors_pk PRIMARY KEY (id)
 )
@@ -16,8 +16,8 @@ CREATE TABLE doctors
 CREATE TABLE hospitals
 (
     id   int      NOT NULL IDENTITY (1,1),
-    name nvarchar NOT NULL,
-    city nvarchar NOT NULL,
+    name nvarchar(50) NOT NULL,
+    city nvarchar(50) NOT NULL,
     CONSTRAINT hospitals_pk PRIMARY KEY (id)
 )
 
@@ -36,7 +36,7 @@ CREATE TABLE patients
     id           int NOT NULL IDENTITY,
     name         int NOT NULL,
     surname      int NOT NULL,
-    birth_number int NOT NULL,
+    birth_number bigint NOT NULL,
     CONSTRAINT patients_birth_number UNIQUE (birth_number),
     CONSTRAINT patients_pk PRIMARY KEY (id)
 )
@@ -57,8 +57,8 @@ CREATE TABLE registered_vaccinations
 CREATE TABLE vaccines
 (
     id           int      NOT NULL IDENTITY (10,2),
-    name         nvarchar NOT NULL,
-    manufacturer nvarchar NOT NULL,
+    name         nvarchar(50) NOT NULL,
+    manufacturer nvarchar(50) NOT NULL,
     price        int      NOT NULL,
     CONSTRAINT vaccines_pk PRIMARY KEY (id)
 )
@@ -97,4 +97,3 @@ ALTER TABLE registered_vaccinations
             REFERENCES vaccines (id)
 
 -- End of file.
-
