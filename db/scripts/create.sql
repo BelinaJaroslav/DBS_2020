@@ -99,9 +99,11 @@ BEGIN TRY
                 REFERENCES vaccines (id)
 
     COMMIT TRANSACTION T_CREATE
+    PRINT N'Creation succeeded'
 END TRY
 BEGIN CATCH
     ROLLBACK TRANSACTION T_CREATE
+    PRINT N'Creation failed'
 END CATCH
 
 -- End of file.
