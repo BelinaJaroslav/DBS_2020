@@ -17,7 +17,7 @@ public class RegisteredVaccination extends Model {
       int pid = resultSet.getInt("patient_id");
       int vid = resultSet.getInt("vaccine_id");
       int did = resultSet.getInt("doctor_id");
-      boolean complete = resultSet.getBoolean("complete");
+      boolean complete = resultSet.getBoolean("completed");
       Time time = resultSet.getTime("time");
       LinkedList<String> list = new LinkedList<>();
 
