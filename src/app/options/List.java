@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class List extends Option {
    @Override
    public Formattable execute(String[] args) throws SQLException {
-      Integer id = parseId(args);
-      String tableName = parseTableName(args);
+      Integer id = parseIdArgument(args, 1, false);
+      String tableName = parseStringArgument(args, 0, "entity-name", true);
       Model model = Parser.fromTableName(tableName);
 
       if (id == null) {
@@ -19,14 +19,6 @@ public class List extends Option {
       } else {
          return model.selectAll(id);
       }
-   }
-
-   private Integer parseId(String[] args) {
-      if (args.length < 2) {
-         return null;
-      }
-
-      return Integer.parseInt(args[1]);
    }
 
    private String parseTableName(String[] args) {
