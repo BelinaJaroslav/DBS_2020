@@ -7,17 +7,17 @@ BEGIN TRY
     -- Table: doctors
     CREATE TABLE doctors
     (
-        id      int          NOT NULL IDENTITY (100,1),
+        id      int           NOT NULL IDENTITY (100,1),
         name    nvarchar(100) NOT NULL,
         surname nvarchar(100) NOT NULL,
-        salary  int          NULL,
+        salary  int           NULL,
         CONSTRAINT doctors_pk PRIMARY KEY (id)
     )
 
     -- Table: hospitals
     CREATE TABLE hospitals
     (
-        id   int          NOT NULL IDENTITY (1,1),
+        id   int           NOT NULL IDENTITY (1,1),
         name nvarchar(100) NOT NULL,
         city nvarchar(100) NOT NULL,
         CONSTRAINT hospitals_pk PRIMARY KEY (id)
@@ -35,10 +35,10 @@ BEGIN TRY
     -- Table: patients
     CREATE TABLE patients
     (
-        id           int          NOT NULL IDENTITY,
+        id           int           NOT NULL IDENTITY,
         name         nvarchar(100) NOT NULL,
         surname      nvarchar(100) NOT NULL,
-        birth_number bigint       NOT NULL,
+        birth_number bigint        NOT NULL,
         CONSTRAINT patients_birth_number UNIQUE (birth_number),
         CONSTRAINT patients_pk PRIMARY KEY (id)
     )
@@ -58,10 +58,10 @@ BEGIN TRY
     -- Table: vaccines
     CREATE TABLE vaccines
     (
-        id           int          NOT NULL IDENTITY (10,2),
+        id           int           NOT NULL IDENTITY (10,2),
         name         nvarchar(100) NOT NULL,
         manufacturer nvarchar(100) NOT NULL,
-        price        int          NOT NULL,
+        price        int           NOT NULL,
         CONSTRAINT vaccines_pk PRIMARY KEY (id)
     )
 
