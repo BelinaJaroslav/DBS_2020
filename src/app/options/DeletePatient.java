@@ -1,9 +1,9 @@
 package app.options;
 
 import app.exceptions.IllegalOptionArgumentException;
+import app.exceptions.RecordNotFoundException;
 import app.formatters.Formattable;
 import app.formatters.PlainMessageFormatter;
-import app.models.Model;
 import app.models.Patient;
 
 import java.sql.SQLException;
@@ -12,10 +12,12 @@ public class DeletePatient extends Option {
    @Override
    public Formattable execute(String[] args) throws IllegalOptionArgumentException, SQLException {
       Integer id = parseIdArgument(args, 0, true);
-      Model model = new Patient();
+      Patient model = new Patient();
 
       String message = String.format("Patient with id %d and it's registrations were removed", id);
-      if (!model.deleteById(id)) {
+      try {
+         model.deleteById(id);
+      } catch (RecordNotFoundException e) {
          message = String.format("Patient with id %d was not found", id);
       }
 
