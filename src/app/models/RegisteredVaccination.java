@@ -13,27 +13,12 @@ import java.util.List;
 public class RegisteredVaccination extends Model {
    public static final String name = "registered_vaccinations";
 
+   public void setIncomplete(int id) throws SQLException {
+      updateCompletedAttribute(id, false);
+   }
+
    public void setCompleted(int id) throws SQLException {
-      Connection connection = ConnectionManager.getConnection();
-      try (
-            PreparedStatement currentState = connection.prepareStatement(String.format("SELECT completed FROM %s WHERE id = ?", modelName()));
-            PreparedStatement update = connection.prepareStatement(String.format("UPDATE %s SET completed = 1 WHERE id = ?", modelName()))
-      ) {
-         connection.setAutoCommit(false);
-         if (!existsRecordForId(id)) {
-            throw new RecordNotFoundException();
-         }
-
-         currentState.setInt(1, id);
-         ResultSet resultSet = currentState.executeQuery();
-         resultSet.next();
-         if (resultSet.getBoolean("completed")) {
-            throw new RecordWasNotChangedException();
-         }
-
-         update.setInt(1, id);
-         update.executeUpdate();
-      }
+      updateCompletedAttribute(id, true);
    }
 
    public void cancel(Integer id) throws SQLException {
@@ -106,5 +91,34 @@ public class RegisteredVaccination extends Model {
             "registered_vaccination_complete",
             "registered_vaccination_time"
       );
+   }
+
+   private void updateCompletedAttribute(int id, boolean state) throws SQLException {
+      Connection connection = ConnectionManager.getConnection();
+      try (
+            PreparedStatement currentState = connection.prepareStatement(String.format("SELECT completed FROM %s WHERE id = ?", modelName()));
+            PreparedStatement update = connection.prepareStatement(String.format("UPDATE %s SET completed = ? WHERE id = ?", modelName()))
+      ) {
+         connection.setAutoCommit(false);
+         if (!existsRecordForId(id)) {
+            throw new RecordNotFoundException();
+         }
+
+         currentState.setInt(1, id);
+         ResultSet resultSet = currentState.executeQuery();
+         resultSet.next();
+         if (state == resultSet.getBoolean("completed")) {
+            throw new RecordWasNotChangedException();
+         }
+
+         update.setBoolean(1, state);
+         update.setInt(2, id);
+         update.executeUpdate();
+
+         connection.commit();
+      } catch (Exception e) {
+         rollbackAndClose(connection);
+         throw e;
+      }
    }
 }
