@@ -26,7 +26,6 @@ public abstract class Option {
       return parseIntArgument(args, index, "id", required);
    }
 
-
    protected Integer parseIntArgument(String[] args, int index, String name, boolean required) {
       try {
          checkArgumentExistence(args, index, name, required);

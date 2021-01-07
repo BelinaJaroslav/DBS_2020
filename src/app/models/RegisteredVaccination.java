@@ -2,6 +2,7 @@ package app.models;
 
 import app.exceptions.RecordDeleteNotAllowed;
 import app.exceptions.RecordNotFoundException;
+import app.exceptions.RecordWasNotChangedException;
 import app.relations.BasicRelation;
 import db.ConnectionManager;
 
@@ -11,6 +12,29 @@ import java.util.List;
 
 public class RegisteredVaccination extends Model {
    public static final String name = "registered_vaccinations";
+
+   public void setCompleted(int id) throws SQLException {
+      Connection connection = ConnectionManager.getConnection();
+      try (
+            PreparedStatement currentState = connection.prepareStatement(String.format("SELECT completed FROM %s WHERE id = ?", modelName()));
+            PreparedStatement update = connection.prepareStatement(String.format("UPDATE %s SET completed = 1 WHERE id = ?", modelName()))
+      ) {
+         connection.setAutoCommit(false);
+         if (!existsRecordForId(id)) {
+            throw new RecordNotFoundException();
+         }
+
+         currentState.setInt(1, id);
+         ResultSet resultSet = currentState.executeQuery();
+         resultSet.next();
+         if (resultSet.getBoolean("completed")) {
+            throw new RecordWasNotChangedException();
+         }
+
+         update.setInt(1, id);
+         update.executeUpdate();
+      }
+   }
 
    public void cancel(Integer id) throws SQLException {
       Connection connection = ConnectionManager.getConnection();
@@ -22,24 +46,18 @@ public class RegisteredVaccination extends Model {
       );
 
       try (
-            PreparedStatement count = connection.prepareStatement(String.format("SELECT COUNT(*) AS records_count FROM %s WHERE id = ?", modelName()));
             PreparedStatement registrations = connection.prepareStatement(sql);
             PreparedStatement delete = connection.prepareStatement(String.format("DELETE FROM %s WHERE id = ?", modelName()))
       ) {
          connection.setAutoCommit(false);
-         count.setInt(1, id);
-         ResultSet resultSet = count.executeQuery();
-
-         resultSet.next();
-         int cnt = resultSet.getInt("records_count");
-         if (cnt == 0) {
+         if (!existsRecordForId(id)) {
             throw new RecordNotFoundException();
          }
 
          registrations.setInt(1, id);
-         resultSet = registrations.executeQuery();
+         ResultSet resultSet = registrations.executeQuery();
          resultSet.next();
-         int patientRegistrationsCnt =  resultSet.getInt("registrations_count");
+         int patientRegistrationsCnt = resultSet.getInt("registrations_count");
          if (patientRegistrationsCnt < 2) {
             throw new RecordDeleteNotAllowed();
          }
