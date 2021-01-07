@@ -6,7 +6,6 @@ import app.exceptions.RecordWasNotChangedException;
 import app.formatters.Formattable;
 import app.formatters.PlainMessageFormatter;
 import app.models.RegisteredVaccination;
-import app.models.Vaccine;
 
 import java.sql.SQLException;
 

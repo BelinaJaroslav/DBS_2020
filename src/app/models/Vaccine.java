@@ -1,10 +1,6 @@
 package app.models;
 
-import app.exceptions.RecordNotFoundException;
-import app.exceptions.RecordWasNotChangedException;
-import app.formatters.Formattable;
 import app.relations.BasicRelation;
-import db.ConnectionManager;
 
 import java.sql.*;
 import java.util.LinkedList;
