@@ -7,6 +7,7 @@ import app.relations.BasicRelation;
 import db.ConnectionManager;
 
 import java.sql.*;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,6 +64,7 @@ public class RegisteredVaccination extends Model {
       int vid = resultSet.getInt("vaccine_id");
       int did = resultSet.getInt("doctor_id");
       boolean complete = resultSet.getBoolean("completed");
+      Date date = resultSet.getDate("time");
       Time time = resultSet.getTime("time");
       LinkedList<String> list = new LinkedList<>();
 
@@ -71,7 +73,7 @@ public class RegisteredVaccination extends Model {
       list.add(Integer.toString(vid));
       list.add(Integer.toString(did));
       list.add(Boolean.toString(complete));
-      list.add(time.toString());
+      list.add(date.toString() + " " + time.toString());
 
       return list;
    }
