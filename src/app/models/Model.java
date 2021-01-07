@@ -1,9 +1,7 @@
 package app.models;
 
-import app.exceptions.RecordNotFoundException;
 import app.relations.BasicRelation;
 import db.ConnectionManager;
-import jdk.nashorn.internal.runtime.ECMAException;
 
 import java.sql.*;
 import java.util.List;
@@ -64,6 +62,11 @@ public abstract class Model {
       } catch (SQLException _e) {
          // noop
       }
+   }
+
+   protected void commitAndClose(Connection connection) throws SQLException {
+      connection.commit();
+      connection.close();
    }
 
    protected abstract List<String> resultSetToList(ResultSet resultSet) throws SQLException;
