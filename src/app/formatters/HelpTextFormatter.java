@@ -12,7 +12,7 @@ public class HelpTextFormatter implements Formattable {
             + String.format("%-130s %s\n", "set_vaccination_incomplete (registered_vaccination_id)", "Set registered vaccination as incomplete")
             + String.format("%-130s %s\n", "change_vaccination_time (registered_vaccination_id) (date) (time)", "Change registered vaccination's date and time")
             + String.format("%-130s %s\n", "select_in_select", "Count of registered vaccinations from every patient")
-            + String.format("%-130s %s\n", "select_in_where", "Performs a query demonstrating select nested in where")
+            + String.format("%-130s %s\n", "select_in_where", "List doctors with higher salary then the average is")
             + String.format("%-130s %s\n", "select_in_from", "Performs a query demonstrating select nested in from")
             + String.format("%-130s %s\n", "group_by", "Performs a query demonstrating the use of group by")
             + String.format("%-130s %s\n", "batch_operation", "Performs a query demonstrating the use of group by")
