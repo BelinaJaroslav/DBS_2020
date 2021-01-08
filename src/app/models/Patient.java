@@ -110,6 +110,21 @@ public class Patient extends Model {
         }
     }
 
+    public BasicRelation setOperation() throws SQLException {
+        String sql = "SELECT * FROM patients EXCEPT (SELECT p.* FROM patients p INNER JOIN registered_vaccinations rv ON rv.patient_id = p.id WHERE rv.completed = 0)";
+        try (
+                Connection connection = ConnectionManager.getConnection();
+                Statement statement = connection.createStatement();
+        ) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            BasicRelation relation = getBasicRelation();
+            while (resultSet.next()) {
+                relation.addLine(resultSetToList(resultSet));
+            }
+            return relation;
+        }
+    }
+
     protected List<String> resultSetToList(ResultSet resultSet) throws SQLException {
         LinkedList<String> line = new LinkedList<>();
         int id = resultSet.getInt("id");
