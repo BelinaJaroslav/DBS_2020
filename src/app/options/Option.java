@@ -85,10 +85,15 @@ public abstract class Option {
          return Date.valueOf(args[index]);
       } catch (NotFoundButNotRequiredArgumentException e) {
          return null;
+      } catch (IllegalOptionArgumentException e) {
+         throw e;
       } catch (IllegalArgumentException e) {
          throw new IllegalOptionArgumentException(
                String.format("unable to convert %s passed as <%s> argument to a date", args[index], name)
          );
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         throw e;
       }
    }
 
@@ -99,6 +104,8 @@ public abstract class Option {
          return Time.valueOf(args[index]);
       } catch (NotFoundButNotRequiredArgumentException e) {
          return null;
+      } catch (IllegalOptionArgumentException e) {
+         throw e;
       } catch (IllegalArgumentException e) {
          throw new IllegalOptionArgumentException(
                String.format("unable to convert %s passed as <%s> argument to a time", args[index], name)
