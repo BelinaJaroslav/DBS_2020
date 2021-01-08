@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SetOperation extends Option {
+public class BatchOperation extends Option {
     @Override
     public Formattable execute(String[] args) throws SQLException {
         Patient model = new Patient();
