@@ -15,18 +15,9 @@ public class Patient extends Model {
    public void deleteById(Integer id) throws SQLException {
       Connection connection = ConnectionManager.getConnection();
 
-      try (
-            PreparedStatement count = connection.prepareStatement(String.format("SELECT COUNT(*) AS records_count FROM %s WHERE id = ?", modelName()));
-            PreparedStatement delete = connection.prepareStatement(String.format("DELETE FROM %s WHERE id = ?", modelName()))
-      ) {
+      try (PreparedStatement delete = connection.prepareStatement(String.format("DELETE FROM %s WHERE id = ?", modelName()))) {
          connection.setAutoCommit(false);
-         count.setInt(1, id);
-         ResultSet resultSet = count.executeQuery();
-
-         resultSet.next();
-         int cnt = resultSet.getInt("records_count");
-
-         if (cnt == 0) {
+         if (!existsRecordForId(id)) {
             throw new RecordNotFoundException();
          }
 
