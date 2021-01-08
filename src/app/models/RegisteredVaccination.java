@@ -58,6 +58,40 @@ public class RegisteredVaccination extends Model {
       }
    }
 
+   public void setTime(int id, Date date, Time time) throws SQLException {
+      Connection connection = ConnectionManager.getConnection();
+      String sqlUpdate = "UPDATE %s SET time = ? WHERE id = ?";
+      String sqlCurrent = "SELECT time FROM %s WHERE id = ?";
+      sqlUpdate = String.format(sqlUpdate, modelName());
+      sqlCurrent = String.format(sqlCurrent, modelName());
+
+      try (
+            PreparedStatement update = connection.prepareStatement(sqlUpdate);
+            PreparedStatement current = connection.prepareStatement(sqlCurrent);
+      ) {
+         connection.setAutoCommit(false);
+
+         if (!existsRecordForId(id)) {
+            throw new RecordNotFoundException();
+         }
+         current.setInt(1, id);
+         ResultSet resultSet = current.executeQuery();
+         resultSet.next();
+         if (date.equals(resultSet.getDate("time")) && time.equals(resultSet.getTime("time"))) {
+            throw new RecordWasNotChangedException();
+         }
+
+         update.setString(1, date.toString() + " " + time.toString());
+         update.setInt(2, id);
+         update.executeUpdate();
+
+         commitAndClose(connection);
+      } catch (Exception e) {
+         rollbackAndClose(connection);
+         throw e;
+      }
+   }
+
    @Override
    protected List<String> resultSetToList(ResultSet resultSet) throws SQLException {
       int id = resultSet.getInt("id");

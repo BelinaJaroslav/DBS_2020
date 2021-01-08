@@ -1,6 +1,5 @@
 package app.options;
 
-import app.exceptions.IllegalOptionArgumentException;
 import app.formatters.Formattable;
 
 import java.sql.SQLException;
