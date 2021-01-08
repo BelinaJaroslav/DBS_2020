@@ -96,12 +96,12 @@ public class Patient extends Model {
     }
 
     public BasicRelation selectInFrom() throws SQLException {
-        Connection connection = ConnectionManager.getConnection();
         String sql = "SELECT * FROM (SELECT * FROM patients WHERE patients.birth_number > 9000000000) as p WHERE p.name = 'Lucie'";
         try (
-                PreparedStatement statement = connection.prepareStatement(sql)
+                Connection connection = ConnectionManager.getConnection();
+                Statement statement = connection.createStatement();
         ) {
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(sql);
             BasicRelation relation = getBasicRelation();
             while (resultSet.next()) {
                 relation.addLine(resultSetToList(resultSet));
