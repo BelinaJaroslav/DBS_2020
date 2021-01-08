@@ -59,7 +59,11 @@ public class Patient extends Model {
    public void deleteById(Integer id) throws SQLException {
       Connection connection = ConnectionManager.getConnection();
 
-      try (PreparedStatement delete = connection.prepareStatement(String.format("DELETE FROM %s WHERE id = ?", modelName()))) {
+      try (
+            PreparedStatement delete = connection.prepareStatement(
+                  String.format("DELETE FROM %s WHERE id = ?", modelName())
+            )
+      ) {
          connection.setAutoCommit(false);
          if (!existsRecordForId(id)) {
             throw new RecordNotFoundException();
