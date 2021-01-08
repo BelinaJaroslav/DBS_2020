@@ -16,10 +16,10 @@ public class SelectInFrom extends Option {
     @Override
     public Formattable execute(String[] args) throws SQLException {
         Patient model = new Patient();
-        String sql = "SELECT * FROM (SELECT * FROM patients WHERE patients.birth_number > 9000000000) as p WHERE p.name = 'Lucie'";
+        String sql = "SELECT * FROM (SELECT * FROM patients WHERE patients.birth_number > 9000000000) AS p WHERE p.name = 'Lucie'";
         try (
                 Connection connection = ConnectionManager.getConnection();
-                Statement statement = connection.createStatement();
+                Statement statement = connection.createStatement()
         ) {
             ResultSet resultSet = statement.executeQuery(sql);
             BasicRelation relation = model.getBasicRelation();

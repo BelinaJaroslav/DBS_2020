@@ -18,7 +18,7 @@ public class GroupBy extends Option {
                 " LEFT JOIN hospitals_doctors hd ON h.id = hd.hospital_id GROUP BY h.id,h.name,h.city HAVING COUNT(hd.id) >= 3;";
         try (
                 Connection connection = ConnectionManager.getConnection();
-                Statement statement = connection.createStatement();
+                Statement statement = connection.createStatement()
         ) {
             ResultSet resultSet = statement.executeQuery(sql);
             BasicRelation relation = new BasicRelation("name", "manufacturer", "usage");

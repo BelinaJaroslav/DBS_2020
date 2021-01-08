@@ -19,7 +19,7 @@ public class SelectInWhere extends Option {
         String sql = "SELECT * FROM doctors d WHERE d.salary > (SELECT AVG(d.salary) FROM doctors d);";
         try (
                 Connection connection = ConnectionManager.getConnection();
-                Statement statement = connection.createStatement();
+                Statement statement = connection.createStatement()
         ) {
             ResultSet resultSet = statement.executeQuery(sql);
             BasicRelation relation = model.getBasicRelation();

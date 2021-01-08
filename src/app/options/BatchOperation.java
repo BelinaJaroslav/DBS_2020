@@ -17,7 +17,7 @@ public class BatchOperation extends Option {
         String sql = "SELECT * FROM patients EXCEPT (SELECT p.* FROM patients p INNER JOIN registered_vaccinations rv ON rv.patient_id = p.id WHERE rv.completed = 0)";
         try (
                 Connection connection = ConnectionManager.getConnection();
-                Statement statement = connection.createStatement();
+                Statement statement = connection.createStatement()
         ) {
             ResultSet resultSet = statement.executeQuery(sql);
             BasicRelation relation = model.getBasicRelation();

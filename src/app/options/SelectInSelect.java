@@ -1,7 +1,6 @@
 package app.options;
 
 import app.formatters.Formattable;
-import app.models.Patient;
 import app.relations.BasicRelation;
 import db.ConnectionManager;
 
