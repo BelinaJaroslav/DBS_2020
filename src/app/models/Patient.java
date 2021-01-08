@@ -1,6 +1,9 @@
 package app.models;
 
+import app.exceptions.DoctorsRecordNotFoundException;
+import app.exceptions.BirthNumberAttributeViolatesUniqueConstraintException;
 import app.exceptions.RecordNotFoundException;
+import app.exceptions.VaccinesRecordNotFoundException;
 import app.relations.BasicRelation;
 import db.ConnectionManager;
 
@@ -31,6 +34,20 @@ public class Patient extends Model {
             )
       ) {
          connection.setAutoCommit(false);
+
+         if (existsRecordForBirthNumber(birth_number)) {
+            throw new BirthNumberAttributeViolatesUniqueConstraintException();
+         }
+
+         Vaccine vaccine = new Vaccine();
+         if (!vaccine.existsRecordForId(vaccine_id)) {
+            throw new VaccinesRecordNotFoundException();
+         }
+
+         Doctor doctor = new Doctor();
+         if (!doctor.existsRecordForId(doctor_id)) {
+            throw new DoctorsRecordNotFoundException();
+         }
 
          insertPatient.setString(1, name);
          insertPatient.setString(2, surname);
@@ -99,5 +116,20 @@ public class Patient extends Model {
 
    protected BasicRelation getBasicRelation() {
       return new BasicRelation("patient_id", "patient_name", "patient_surname", "patient_birth_number");
+   }
+
+   private boolean existsRecordForBirthNumber(Long birth_number) throws SQLException {
+      try (
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement count = connection.prepareStatement(String.format("SELECT COUNT(*) as records_count FROM %s WHERE birth_number = ?", modelName()))
+      ) {
+         count.setLong(1, birth_number);
+         ResultSet resultSet = count.executeQuery();
+
+         resultSet.next();
+         int cnt = resultSet.getInt("records_count");
+
+         return cnt > 0;
+      }
    }
 }

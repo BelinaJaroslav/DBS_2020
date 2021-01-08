@@ -40,7 +40,7 @@ public abstract class Model {
       return relation;
    }
 
-   protected boolean existsRecordForId(int id) throws SQLException {
+   public boolean existsRecordForId(int id) throws SQLException {
       try (
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement count = connection.prepareStatement(String.format("SELECT COUNT(*) as records_count FROM %s WHERE id = ?", modelName()))
