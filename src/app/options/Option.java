@@ -26,14 +26,18 @@ public abstract class Option {
       return parseIntArgument(args, index, "id", required);
    }
 
-   protected Integer parseIntArgument(String[] args, int index, String name, boolean required) {
+   protected Integer parseIntArgument(String[] args, int index, String name, boolean required) throws IllegalOptionArgumentException {
       try {
          checkArgumentExistence(args, index, name, required);
+
+         return Integer.parseInt(args[index]);
       } catch (NotFoundButNotRequiredArgumentException e) {
          return null;
+      } catch (NumberFormatException e) {
+         throw new IllegalOptionArgumentException(
+               String.format("unable to convert %s passed as <%s> argument to a number", args[index], name)
+         );
       }
-
-      return Integer.parseInt(args[index]);
    }
 
    protected String parseStringArgument(String[] args, int index, String name, boolean required) {

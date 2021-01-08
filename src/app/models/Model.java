@@ -1,9 +1,7 @@
 package app.models;
 
-import app.exceptions.RecordNotFoundException;
 import app.relations.BasicRelation;
 import db.ConnectionManager;
-import jdk.nashorn.internal.runtime.ECMAException;
 
 import java.sql.*;
 import java.util.List;
@@ -42,7 +40,7 @@ public abstract class Model {
       return relation;
    }
 
-   protected boolean existsRecordForId(int id) throws SQLException {
+   public boolean existsRecordForId(int id) throws SQLException {
       try (
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement count = connection.prepareStatement(String.format("SELECT COUNT(*) as records_count FROM %s WHERE id = ?", modelName()))
@@ -64,6 +62,11 @@ public abstract class Model {
       } catch (SQLException _e) {
          // noop
       }
+   }
+
+   protected void commitAndClose(Connection connection) throws SQLException {
+      connection.commit();
+      connection.close();
    }
 
    protected abstract List<String> resultSetToList(ResultSet resultSet) throws SQLException;

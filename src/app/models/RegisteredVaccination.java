@@ -50,7 +50,8 @@ public class RegisteredVaccination extends Model {
 
          delete.setInt(1, id);
          delete.execute();
-         connection.commit();
+
+         commitAndClose(connection);
       } catch (Exception e) {
          rollbackAndClose(connection);
          throw e;
@@ -117,7 +118,7 @@ public class RegisteredVaccination extends Model {
          update.setInt(2, id);
          update.executeUpdate();
 
-         connection.commit();
+         commitAndClose(connection);
       } catch (Exception e) {
          rollbackAndClose(connection);
          throw e;
