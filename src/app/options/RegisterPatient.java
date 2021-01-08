@@ -38,46 +38,4 @@ public class RegisterPatient extends Option {
 
       return new PlainMessageFormatter(message);
    }
-
-   private Long parseLongArgument(String[] args, int index, String name, boolean required) {
-      try {
-         checkArgumentExistence(args, index, name, required);
-
-         return Long.parseLong(args[index]);
-      } catch (NotFoundButNotRequiredArgumentException e) {
-         return null;
-      } catch (NumberFormatException e) {
-         throw new IllegalOptionArgumentException(
-               String.format("unable to convert %s passed as <%s> argument to a number", args[index], name)
-         );
-      }
-   }
-
-   private Date parseDateArgument(String[] args, int index, String name, boolean required) {
-      try {
-         checkArgumentExistence(args, index, name, required);
-
-         return Date.valueOf(args[index]);
-      } catch (NotFoundButNotRequiredArgumentException e) {
-         return null;
-      } catch (IllegalArgumentException e) {
-         throw new IllegalOptionArgumentException(
-               String.format("unable to convert %s passed as <%s> argument to a date", args[index], name)
-         );
-      }
-   }
-
-   private Time parseTimeArgument(String[] args, int index, String name, boolean required) {
-      try {
-         checkArgumentExistence(args, index, name, required);
-
-         return Time.valueOf(args[index]);
-      } catch (NotFoundButNotRequiredArgumentException e) {
-         return null;
-      } catch (IllegalArgumentException e) {
-         throw new IllegalOptionArgumentException(
-               String.format("unable to convert %s passed as <%s> argument to a time", args[index], name)
-         );
-      }
-   }
 }
