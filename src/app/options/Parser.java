@@ -1,5 +1,6 @@
 package app.options;
 
+import app.exceptions.ExitException;
 import app.exceptions.IllegalOptionArgumentException;
 import app.formatters.Formattable;
 
@@ -23,7 +24,7 @@ public class Parser {
          throw new RuntimeException("Arguments for option `" + rawOptionName + "` are invalid: " + e.getMessage() + "\nTry <help>");
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
          throw new RuntimeException("Option `" + rawOptionName + "` is invalid. Try <help>");
-      } catch (Exception e) {
+      } catch (SQLException e) {
          throw new RuntimeException(e.getMessage());
       }
    }
