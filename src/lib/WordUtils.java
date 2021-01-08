@@ -1,4 +1,4 @@
-package app.lib;
+package lib;
 
 public class WordUtils {
    public static String toCamelCase(String s) {

@@ -3,7 +3,7 @@ package app.options;
 import app.exceptions.IllegalOptionArgumentException;
 import app.exceptions.NotFoundButNotRequiredArgumentException;
 import app.formatters.Formattable;
-import app.lib.WordUtils;
+import lib.WordUtils;
 
 import java.sql.SQLException;
 
