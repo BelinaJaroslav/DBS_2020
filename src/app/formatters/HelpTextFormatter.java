@@ -11,6 +11,12 @@ public class HelpTextFormatter implements Formattable {
             + String.format("%-130s %s\n", "set_vaccination_completed (registered_vaccination_id)", "Set registered vaccination as completed")
             + String.format("%-130s %s\n", "set_vaccination_incomplete (registered_vaccination_id)", "Set registered vaccination as incomplete")
             + String.format("%-130s %s\n", "change_vaccination_time (registered_vaccination_id) (date) (time)", "Change registered vaccination's date and time")
+            + String.format("%-130s %s\n", "select_in_select", "Count of registered vaccinations from every patient")
+            + String.format("%-130s %s\n", "select_in_where", "List doctors with higher salary then the average is")
+            + String.format("%-130s %s\n", "select_in_from", "List patients with birth number greater then 9000000000 and name 'Lucie'")
+            + String.format("%-130s %s\n", "group_by", "Hospitals with more or equal to 3 doctors")
+            + String.format("%-130s %s\n", "batch_operation", "List patients who have all vaccinations completed")
+            + String.format("%-130s %s\n", "left_join", "List usage of each vaccine")
             + String.format("%-130s %s\n", "exit", "Exit the program")
             + String.format("%-130s %s\n", "help", "Shows this help text");
    }

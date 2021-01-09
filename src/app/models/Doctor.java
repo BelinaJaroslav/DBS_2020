@@ -10,7 +10,7 @@ public class Doctor extends Model {
    public static final String name = "doctors";
 
    @Override
-   protected List<String> resultSetToList(ResultSet resultSet) throws SQLException {
+   public List<String> resultSetToList(ResultSet resultSet) throws SQLException {
       LinkedList<String> line = new LinkedList<>();
       int id = resultSet.getInt("id");
       int salary = resultSet.getInt("salary");
@@ -29,7 +29,7 @@ public class Doctor extends Model {
    }
 
    @Override
-   protected BasicRelation getBasicRelation() {
+   public BasicRelation getBasicRelation() {
       return new BasicRelation("doctor_id", "doctor_name", "doctor_surname", "doctor_salary");
    }
 }
