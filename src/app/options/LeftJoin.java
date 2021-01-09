@@ -12,30 +12,34 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LeftJoin extends Option {
-    @Override
-    public Formattable execute(String[] args) throws SQLException {
-        String sql = "SELECT v.name, v.manufacturer, usage = COUNT(rv.id) FROM vaccines v " +
-                "LEFT JOIN registered_vaccinations rv ON v.id = rv.vaccine_id group by v.name,v.manufacturer;";
-        try (
-                Connection connection = ConnectionManager.getConnection();
-                Statement statement = connection.createStatement()
-        ) {
-            ResultSet resultSet = statement.executeQuery(sql);
-            BasicRelation relation = new BasicRelation("name", "manufacturer", "usage");
-            while (resultSet.next()) {
-                relation.addLine(resultSetToList(resultSet));
-            }
-            return relation;
-        }
-    }
+   @Override
+   public Formattable execute(String[] args) throws SQLException {
+      String sql = "SELECT v.*, COUNT(rv.id) AS usage FROM vaccines v " +
+            "LEFT JOIN registered_vaccinations rv ON v.id = rv.vaccine_id GROUP BY v.id, v.name, v.manufacturer, v.price ORDER BY COUNT(rv.id) DESC";
+      try (
+            Connection connection = ConnectionManager.getConnection();
+            Statement statement = connection.createStatement()
+      ) {
+         ResultSet resultSet = statement.executeQuery(sql);
+         BasicRelation relation = new BasicRelation("vaccine_id", "vaccine_name", "vaccine_manufacturer", "vaccine_price", "vaccine_usage");
 
-    protected static List<String> resultSetToList(ResultSet resultSet) throws SQLException {
-        LinkedList<String> line = new LinkedList<>();
+         while (resultSet.next()) {
+            relation.addLine(resultSetToList(resultSet));
+         }
 
-        line.add(resultSet.getString("name"));
-        line.add(resultSet.getString("manufacturer"));
-        line.add(Integer.toString(resultSet.getInt("usage")));
+         return relation;
+      }
+   }
 
-        return line;
-    }
+   protected static List<String> resultSetToList(ResultSet resultSet) throws SQLException {
+      LinkedList<String> line = new LinkedList<>();
+
+      line.add(Integer.toString(resultSet.getInt("id")));
+      line.add(resultSet.getString("name"));
+      line.add(resultSet.getString("manufacturer"));
+      line.add(resultSet.getString("price"));
+      line.add(Integer.toString(resultSet.getInt("usage")));
+
+      return line;
+   }
 }
