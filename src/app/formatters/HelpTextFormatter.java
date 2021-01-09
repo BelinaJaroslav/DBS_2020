@@ -14,7 +14,7 @@ public class HelpTextFormatter implements Formattable {
             + String.format("%-130s %s\n", "select_in_select", "Count of registered vaccinations from every patient")
             + String.format("%-130s %s\n", "select_in_where", "List doctors with higher salary then the average is")
             + String.format("%-130s %s\n", "select_in_from", "List patients with birth number greater then 9000000000 and name 'Lucie'")
-            + String.format("%-130s %s\n", "group_by", "Performs a query demonstrating the use of group by")
+            + String.format("%-130s %s\n", "group_by", "Hospitals with more or equal to 3 doctors")
             + String.format("%-130s %s\n", "batch_operation", "Performs a query demonstrating the use of group by")
             + String.format("%-130s %s\n", "left_join", "Performs a query demonstrating the use of group by")
             + String.format("%-130s %s\n", "exit", "Exit the program")
